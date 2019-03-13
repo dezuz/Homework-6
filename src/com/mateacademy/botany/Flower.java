@@ -14,5 +14,4 @@ public abstract class Flower {
     public int getPrice() {
         return price;
     }
-
 }
