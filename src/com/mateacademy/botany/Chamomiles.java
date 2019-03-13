@@ -1,9 +1,17 @@
 package com.mateacademy.botany;
 
-public class Chamomiles extends Flowers {
-    private static final int price = 70;
+public class Chamomiles extends Flower {
 
-    public static int getPrice() {
-        return price;
+    public Chamomiles() {
+        super(70);
+    }
+
+    public Chamomiles(int price) {
+        super(price);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

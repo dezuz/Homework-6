@@ -1,67 +1,84 @@
 package com.mateacademy.botany;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FlowerStore {
-    private List<? super Flowers> bouquet;
+    private Flower[] bouquet;
     private int purse;
+    private int arrayOrder;
 
-    public List<? super Flowers> sell(int rosesNumber, int chamomilesNumber, int tulipsNumber) {
-        bouquet = new ArrayList<>();
+    public Flower[] sell(int rosesNumber, int chamomilesNumber, int tulipsNumber) {
+        int flowersNumber = rosesNumber + chamomilesNumber + tulipsNumber;
+        bouquet = new Flower[flowersNumber];
+        arrayOrder = 0;
         for (int i = 0; i < rosesNumber; i++) {
-            setBouquet(new Roses());
+            setBouquet(new Roses(), arrayOrder++);
+            addToPurse(new Roses());
         }
         for (int i = 0; i < chamomilesNumber; i++) {
-            setBouquet(new Chamomiles());
+            setBouquet(new Chamomiles(), arrayOrder++);
+            addToPurse(new Chamomiles());
         }
         for (int i = 0; i < tulipsNumber; i++) {
-            setBouquet(new Tulips());
+            setBouquet(new Tulips(), arrayOrder++);
+            addToPurse(new Tulips());
         }
-        addToPurse(rosesNumber, chamomilesNumber, tulipsNumber);
 
+        displayBouquet();
         return bouquet;
     }
 
-    public List<? super Flowers> sellSequence(int rosesNumber, int chamomilesNumber, int tulipsNumber) {
-        bouquet = new ArrayList<>();
+    public Flower[] sellSequence(int rosesNumber, int chamomilesNumber, int tulipsNumber) {
+        int flowersNumber = rosesNumber + chamomilesNumber + tulipsNumber;
+        bouquet = new Flower[flowersNumber];
         int maxNumber = (rosesNumber > chamomilesNumber && rosesNumber > tulipsNumber) ? rosesNumber
                 : (chamomilesNumber > tulipsNumber) ? chamomilesNumber : tulipsNumber;
         int firstNumber = rosesNumber, secondNumber = chamomilesNumber, thirdNumber = tulipsNumber;
+        arrayOrder = 0;
         do {
             if (firstNumber > 0) {
-                setSequenceBouquet(new Roses());
+                setSequenceBouquet(new Roses(), arrayOrder++);
+                addToPurse(new Roses());
                 firstNumber--;
             }
             if (secondNumber > 0) {
-                setSequenceBouquet(new Chamomiles());
+                setSequenceBouquet(new Chamomiles(), arrayOrder++);
+                addToPurse(new Chamomiles());
                 secondNumber--;
             }
             if (thirdNumber > 0) {
-                setSequenceBouquet(new Tulips());
+                setSequenceBouquet(new Tulips(), arrayOrder++);
+                addToPurse(new Tulips());
                 thirdNumber--;
             }
             maxNumber--;
         } while (maxNumber > 0);
-        addToPurse(rosesNumber, chamomilesNumber, tulipsNumber);
 
+        displayBouquet();
         return bouquet;
     }
 
+    public void displayBouquet() {
+        List<Flower> flowers = new ArrayList<>();
+        flowers.addAll(Arrays.asList(bouquet));
+        System.out.println(flowers);
+    }
+
     public int getPurse() {
-        return this.purse;
+        return purse;
     }
 
-    private <T> void setBouquet(T type) {
-        bouquet.add((Flowers)type);
+    private void setBouquet(Flower type, int arrayOrder) {
+        bouquet[arrayOrder] = type;
     }
 
-    private <T> void setSequenceBouquet(T  type) {
-        bouquet.add((Flowers)type);
+    private void setSequenceBouquet(Flower type, int arrayOrder) {
+        bouquet[arrayOrder] = type;
     }
 
-    private void addToPurse(int rosesNumber, int chamomilesNumber, int tulipsNumber) {
-        this.purse += rosesNumber * Roses.getPrice() + chamomilesNumber * Chamomiles.getPrice()
-                + tulipsNumber * Tulips.getPrice();
+    private void addToPurse(Flower type) {
+        this.purse += type.getPrice();
     }
 }
