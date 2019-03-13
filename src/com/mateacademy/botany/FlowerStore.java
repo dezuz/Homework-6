@@ -14,19 +14,18 @@ public class FlowerStore {
         bouquet = new Flower[flowersNumber];
         arrayOrder = 0;
         for (int i = 0; i < rosesNumber; i++) {
-            setBouquet(new Roses(), arrayOrder++);
-            addToPurse(new Roses());
+            setBouquet(new Rose(), arrayOrder++);
+            addToPurse(new Rose());
         }
         for (int i = 0; i < chamomilesNumber; i++) {
-            setBouquet(new Chamomiles(), arrayOrder++);
-            addToPurse(new Chamomiles());
+            setBouquet(new Chamomile(), arrayOrder++);
+            addToPurse(new Chamomile());
         }
         for (int i = 0; i < tulipsNumber; i++) {
-            setBouquet(new Tulips(), arrayOrder++);
-            addToPurse(new Tulips());
+            setBouquet(new Tulip(), arrayOrder++);
+            addToPurse(new Tulip());
         }
 
-        displayBouquet();
         return bouquet;
     }
 
@@ -39,24 +38,23 @@ public class FlowerStore {
         arrayOrder = 0;
         do {
             if (firstNumber > 0) {
-                setSequenceBouquet(new Roses(), arrayOrder++);
-                addToPurse(new Roses());
+                setSequenceBouquet(new Rose(), arrayOrder++);
+                addToPurse(new Rose());
                 firstNumber--;
             }
             if (secondNumber > 0) {
-                setSequenceBouquet(new Chamomiles(), arrayOrder++);
-                addToPurse(new Chamomiles());
+                setSequenceBouquet(new Chamomile(), arrayOrder++);
+                addToPurse(new Chamomile());
                 secondNumber--;
             }
             if (thirdNumber > 0) {
-                setSequenceBouquet(new Tulips(), arrayOrder++);
-                addToPurse(new Tulips());
+                setSequenceBouquet(new Tulip(), arrayOrder++);
+                addToPurse(new Tulip());
                 thirdNumber--;
             }
             maxNumber--;
         } while (maxNumber > 0);
 
-        displayBouquet();
         return bouquet;
     }
 

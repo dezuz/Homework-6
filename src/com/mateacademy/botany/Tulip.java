@@ -1,17 +1,17 @@
 package com.mateacademy.botany;
 
-public class Tulips extends Flower {
+public class Tulip extends Flower {
 
-    public Tulips() {
+    public Tulip() {
         super(45);
     }
 
-    public Tulips(int price) {
+    public Tulip(int price) {
         super(price);
     }
 
     @Override
     public String toString() {
-        return super.toString();
+        return "Tulip";
     }
 }
